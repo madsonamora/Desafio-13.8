@@ -1,5 +1,5 @@
 
-13.8 Desafio 8
+13.8 
 Faça um programa que apresente o menu de opções a seguir:
 1. Cadastrar pessoa na agenda de aniversariantes (nome, dia e mês do aniversário).
 2. Excluir pessoa a partir do nome.
