@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import java.util.Collections;
+
 public class Agenda {
 
     ArrayList<Pessoa> aniversariantes;
@@ -9,11 +11,9 @@ public class Agenda {
 
     }
 
-    public void cadastrarPessoa(String nome, int idade, int ano, int mes, int dia) {
+    public void cadastrarPessoa(String nome, int ano, int mes, int dia) {
 
-        if (!(idade < 120 && idade > 0)) {
-            System.out.println("idade errada!" + " do " + nome);
-        }
+      
 
         if (!(mes > 0 && mes < 13)) {
             System.out.println("mes digitado errado!" + " do " + nome);
@@ -27,7 +27,7 @@ public class Agenda {
             System.out.println("Ano digitado incorretamente! " + "do usuario " + nome);
         } else {
 
-            Pessoa novaPessoa = new Pessoa(nome, idade, ano, mes, dia);
+            Pessoa novaPessoa = new Pessoa(nome, ano, mes, dia);
 
             aniversariantes.add(novaPessoa);
 
@@ -35,58 +35,78 @@ public class Agenda {
 
     }
 
-    // public void excluirPessoa(String nome) {
-    // for (int i = 0; i < aniversariantes.size(); i++) {
-    // if(aniversariantes.pessoa == nome){
-    // }
-    // }
-    // }
-
     public Pessoa remover(String nome) {
-       
 
         for (Pessoa pessoa : aniversariantes) {
 
             if (pessoa.nome == nome) {
+                return aniversariantes.remove(aniversariantes.indexOf(pessoa));
+            }
+        }
+        return null;
+    }
 
-                 int index= aniversariantes.indexOf(pessoa);
-               
-                return aniversariantes.remove(index);
+    public void consultarPorDia(int dia) {
+
+        ArrayList<Pessoa> aniverDia = new ArrayList<>();
+
+        for (Pessoa pessoa : aniversariantes) {
+            if (pessoa.dia == dia) {
+                aniverDia.add(pessoa);
+            }
+
+        }
+        for (Pessoa pessoa : aniverDia) {
+                System.out.println("Aniversariantes do dia: "+ dia + "- "+ pessoa.nome);
+        }
+        
+    }
+
+    public void alterarDataAniversario(String nome, int novoDia, int novoMes) {
+        for (Pessoa pessoa : aniversariantes) {
+
+            if (pessoa.nome == nome) {
+
+                pessoa.setDia(novoDia);
+                pessoa.setMes(novoMes);
 
             }
 
         }
-        return null;
-       
     }
 
-    public static void excluirPessoa(String nome) {
-        // agenda.excluirPessoa(nome);
-    }
+    public void consultarPorMes(int mes) {
+        ArrayList<Pessoa> aniverDia = new ArrayList<>();
 
-    public void alterarAniversario() {
+        for (Pessoa pessoa : aniversariantes) {
+            if (pessoa.mes == mes) {
+                aniverDia.add(pessoa);
+            }
 
-    }
+        }
 
-    public void consultarPorMes() {
-
-    }
-
-    public void consultarPorInicial() {
-
-    }
-
-    public void mostrarOrdenadoPorNome() {
-
+        for (Pessoa aniversariantes : aniverDia) {
+            System.out.println(" Pessoas que fazer aniversario no dia "+ mes +" :"+aniversariantes.nome);
+        }
     }
 
     public void mostrarOrdenadoPorMes() {
+
+        ArrayList<Integer> aniversMes = new ArrayList();
+
+        for (Pessoa pessoa : aniversariantes) {
+            aniversMes.add(pessoa.mes);
+        }
+        Collections.sort(aniversMes);
+        for (int aniv : aniversMes) {
+            System.out.println(aniv + ": mes: " + aniv);
+        }
 
     }
 
     public void imprimir() {
         for (Pessoa pessoa : aniversariantes) {
-            System.out.println(pessoa.nome + " - " + pessoa.mes);
+            System.out.println(pessoa.nome + " mes:" + pessoa.mes + " dia:" + pessoa.dia+" idade: "+pessoa.idade);
         }
     }
 }

@@ -7,7 +7,7 @@ public class Pessoa {
     public int mes;
     public int ano;
 
-    public Pessoa(String n, int idade, int ano, int mes, int dia) {
+    public Pessoa(String n,  int ano, int mes, int dia) {
         super();
         this.nome = n;
         int currentYear = Year.now().getValue();
@@ -18,7 +18,17 @@ public class Pessoa {
 
     }
 
-
-
+    public void setNome(String nome){
+    
+        this.nome=nome;
+    }
+  public void setDia(int dia){
+    
+        this.dia=dia;
+    }
+      public void setMes(int mes){
+    
+        this.mes=mes;
+    }
    
 }
